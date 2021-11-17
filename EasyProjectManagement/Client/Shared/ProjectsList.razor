@@ -1,0 +1,13 @@
+﻿<h3>Projects List</h3>
+
+    <GenericList List="MyProjectsList">
+        <ElementTemplate>
+            @*"context" keyword usa o que se passar no Element Template*@
+            <IndividualProject projectData="context"></IndividualProject>
+        </ElementTemplate>
+    </GenericList>
+
+@code {
+    // Parameters
+    [Parameter] public List<Project> MyProjectsList { get; set; }
+}

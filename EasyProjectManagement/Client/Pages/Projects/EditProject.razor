@@ -1,0 +1,15 @@
+﻿@page "/project/edit"
+
+<h3>Edit Project</h3>
+
+<ProjectForm Project="project" OnValidSubmit="Edit" />
+
+@code {
+    private Project project = new Project();
+
+    private void Edit()
+    {
+        Console.WriteLine("Edit Method");
+        Console.WriteLine("Name: " + project.Name);
+    }
+}

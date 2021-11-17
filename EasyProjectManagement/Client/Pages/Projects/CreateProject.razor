@@ -1,0 +1,15 @@
+﻿@page "/project/create"
+
+<h3>CreateProject</h3>
+
+<ProjectForm Project="project" OnValidSubmit="Create" />
+
+@code {
+    private Project project = new Project();
+
+    private void Create()
+    {
+        Console.WriteLine("Create Method");
+        Console.WriteLine("Name: " + project.Name);
+    }
+}

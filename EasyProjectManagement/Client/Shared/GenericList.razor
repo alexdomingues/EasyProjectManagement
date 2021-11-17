@@ -1,0 +1,44 @@
+﻿@*To make this component generic*@
+@typeparam TItem
+
+@if (List == null)
+{
+    @if (NullTemplate!=null)
+   {
+        @NullTemplate
+    }
+    else
+    {
+        // Default content
+        <p>Loading ...</p>
+    }
+}
+else if (List.Count==0)
+{
+    @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        //Default content
+        <p>No records to show</p>
+    }
+}
+else
+{
+    @foreach (var element in List)
+    {
+        @ElementTemplate(element);
+    }
+}
+
+@code {
+    // Para definir o comportamento de lista nula ou vazia
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+
+    // Para suportar elementos e listas genéricas
+    [Parameter] public RenderFragment<TItem> ElementTemplate { get; set; }
+    [Parameter] public List<TItem> List { get; set; }
+}
