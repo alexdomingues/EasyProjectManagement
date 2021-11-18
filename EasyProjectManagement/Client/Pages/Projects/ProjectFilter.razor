@@ -1,0 +1,32 @@
+﻿@page "/project/search"
+
+<h3>Search Project</h3>
+
+<div class="form-inline">
+    <div class="form-group mb-2">
+        <label for="title" class="sr-only">Project Name</label>
+        <input type="text" class="form-control" id="title" placeholder="Project name"
+               @bind-value="title" @bind-value:event="oninput"
+               @onkeypress="@((KeyboardEventArgs e) => TitleKeyPressed(e))" />
+    </div>
+    <div class="form-btn-group mx-sm-3 mb-2">
+        <select class="form-control" @bind="selectedProject"></select>
+        <option value="0">
+            -- Select project
+        </option>
+
+    </div>
+</div>
+
+@code {
+    string title = "";
+    string selectedProject = "0";
+    
+    private void TitleKeyPressed(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            // ...
+        }
+    }
+}

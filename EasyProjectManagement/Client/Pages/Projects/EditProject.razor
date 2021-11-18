@@ -1,15 +1,26 @@
-﻿@page "/project/edit"
+﻿@page "/project/edit/{ProjectId:int}"
 
 <h3>Edit Project</h3>
 
-<ProjectForm Project="project" OnValidSubmit="Edit" />
+@if (project != null)
+{
+<ProjectForm Project="project" OnValidSubmit="Edit" />    
+}
 
 @code {
-    private Project project = new Project();
 
-    private void Edit()
+    [Parameter] public int ProjectId { get; set; }
+
+    public Project project;
+
+    protected override void OnInitialized()
+    {
+        project = new Project() { Id = ProjectId, Name = "MyEditProject", Description = "blabla", Owner = "AD", State = "Active" };
+    }
+
+    private void Edit ()
     {
         Console.WriteLine("Edit Method");
-        Console.WriteLine("Name: " + project.Name);
+        Console.WriteLine($"Project Name {project.Name}");
     }
 }
