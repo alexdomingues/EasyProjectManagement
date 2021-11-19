@@ -4,24 +4,57 @@
 
 <div class="form-inline">
     <div class="form-group mb-2">
-        <label for="title" class="sr-only">Project Name</label>
+        <label for="name" class="sr-only">Project Name</label>
         <input type="text" class="form-control" id="title" placeholder="Project name"
-               @bind-value="title" @bind-value:event="oninput"
+               @bind-value="name" @bind-value:event="oninput"
                @onkeypress="@((KeyboardEventArgs e) => TitleKeyPressed(e))" />
     </div>
     <div class="form-btn-group mx-sm-3 mb-2">
-        <select class="form-control" @bind="selectedProject"></select>
-        <option value="0">
-            -- Select project
-        </option>
-
+        <select class="form-control" @bind="selectedProject">
+            <option value="0">
+                -- Select project
+            </option>
+            @foreach (var project in Projects)
+            {
+                <option value="@project.Id">@project.Name</option>
+            }
+        </select>
     </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="checkbox" class="form-check-input" id="upcomingReleases" @bind="upcomingReleases" />
+        <label class="form-check-label" for="upcomingReleases">Upcoming releases</label>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="checkbox" class="form-check-input" id="upcomingReleases" @bind="inTheaters" />
+        <label class="form-check-label" for="inTheaters">In Theaters</label>
+    </div>
+    <button type="button" class="btn btn-primary mb-2 mx-sm-3" @onclick="SearchForMovies">Filter</button>
+    <button type="button" class="btn btn-danger mb-2" @onclick="Clear">Clear</button>
+
 </div>
 
 @code {
-    string title = "";
+    string name = "";
     string selectedProject = "0";
-    
+    bool upcomingReleases = false;
+    bool inTheaters = false;
+
+    private List<Project> Projects = new List<Project>()
+    {
+        new Project() { Id = 1, Description = "bla", Name = "lepo", Owner = "Ad", State = "active" },
+        new Project() { Id = 2, Description = "bla", Name = "lepo2", Owner = "Ad", State = "active" }
+    };
+
+    private void SearchForMovies()
+    {
+        Console.WriteLine($"name: {name}");
+    }
+
+    private void Clear()
+    {
+        name = "";
+    }
+
     private void TitleKeyPressed(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
