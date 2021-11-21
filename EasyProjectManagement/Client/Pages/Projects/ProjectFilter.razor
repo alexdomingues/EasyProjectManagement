@@ -16,7 +16,7 @@
             </option>
             @foreach (var project in Projects)
             {
-                <option value="@project.Id">@project.Name</option>
+                <option value="@project.Id">@project.State</option>
             }
         </select>
     </div>
@@ -42,17 +42,23 @@
     private List<Project> Projects = new List<Project>()
     {
         new Project() { Id = 1, Description = "bla", Name = "lepo", Owner = "Ad", State = "active" },
-        new Project() { Id = 2, Description = "bla", Name = "lepo2", Owner = "Ad", State = "active" }
+        new Project() { Id = 2, Description = "bla", Name = "lepo2", Owner = "Ad", State = "closed" }
     };
 
     private void SearchForMovies()
     {
         Console.WriteLine($"name: {name}");
+        Console.WriteLine($"Project: {selectedProject}");
+        Console.WriteLine($"upcomingReleases: {upcomingReleases}");
+        Console.WriteLine($"inTheaters: {inTheaters}");
     }
 
     private void Clear()
     {
         name = "";
+        selectedProject = "0";
+        upcomingReleases = false;
+        inTheaters = false;
     }
 
     private void TitleKeyPressed(KeyboardEventArgs e)
