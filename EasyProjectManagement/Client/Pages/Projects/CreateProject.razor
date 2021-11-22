@@ -1,4 +1,6 @@
 ﻿@page "/project/create"
+@inject IProjectRepository projectRepository
+@inject NavigationManager navigationManager
 
 <h3>CreateProject</h3>
 
@@ -7,9 +9,19 @@
 @code {
     private Project project = new Project();
 
-    private void Create()
+    private async Task Create()
     {
         Console.WriteLine("Create Method");
         Console.WriteLine("Name: " + project.Name);
+
+        try
+        {
+            await projectRepository.CreateProject(project);
+            navigationManager.NavigateTo("projects");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }
