@@ -17,14 +17,19 @@ namespace EasyProjectManagement.Client
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            ConfigureServices(builder.Services);
+
             await builder.Build().RunAsync();
 
         }
 
         private static void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<SingletonService>();
+            services.AddTransient<TransientnService>();
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
     }
 }

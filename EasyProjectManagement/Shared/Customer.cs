@@ -12,9 +12,9 @@ namespace EasyProjectManagement.Shared
         public int CustomerId { get; set; }
         [Required]
         public string Name { get; set; }
-        public string Acronym { get; set; }
-        public string PrimaryEmail { get; set; }
-        public string NamePrimaryEmail { get; set; }
+        //public string Acronym { get; set; }
+        //public string PrimaryEmail { get; set; }
+        //public string NamePrimaryEmail { get; set; }
 
     }
 }

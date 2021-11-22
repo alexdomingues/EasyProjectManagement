@@ -1,0 +1,26 @@
+﻿@page "/customers/edit/{CustomerId:int}"
+
+<h3>Edit Customer</h3>
+
+@if (customer != null)
+{
+<CustomerForm Customer="customer" OnValidSubmit="Edit" />    
+}
+
+@code {
+
+    [Parameter] public int CustomerId { get; set; }
+
+    public Customer customer;
+
+    protected override void OnInitialized()
+    {
+        customer = new Customer() { CustomerId = CustomerId, Name = "Sofrio"};
+    }
+
+    private void Edit ()
+    {
+        Console.WriteLine("Edit Method");
+        Console.WriteLine($"Customer Name {customer.Name}");
+    }
+}

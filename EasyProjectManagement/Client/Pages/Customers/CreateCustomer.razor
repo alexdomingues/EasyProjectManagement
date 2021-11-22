@@ -1,0 +1,29 @@
+﻿@page "/customers/create"
+@inject ICustomerRepository customerRepository
+@inject NavigationManager navigationManager
+
+<h3>Create Customer</h3>
+
+<CustomerForm Customer="customer" OnValidSubmit="Create" />
+
+@code {
+    
+    private Customer customer = new Customer();
+
+    private async Task Create()
+    /*private void Create ()*/
+    {
+        Console.WriteLine("Create Method");
+        Console.WriteLine("Name: " + customer.Name);
+        
+        try
+        {
+            await customerRepository.CreateCustomer(customer);
+            navigationManager.NavigateTo("customers");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

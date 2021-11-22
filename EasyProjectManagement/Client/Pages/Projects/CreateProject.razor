@@ -1,19 +1,21 @@
-﻿@page "/project/create"
+﻿@page "/projects/create"
 @inject IProjectRepository projectRepository
 @inject NavigationManager navigationManager
 
-<h3>CreateProject</h3>
+<h3>Create Project</h3>
 
 <ProjectForm Project="project" OnValidSubmit="Create" />
 
 @code {
+    
     private Project project = new Project();
 
     private async Task Create()
+    /*private void Create ()*/
     {
         Console.WriteLine("Create Method");
         Console.WriteLine("Name: " + project.Name);
-
+        
         try
         {
             await projectRepository.CreateProject(project);

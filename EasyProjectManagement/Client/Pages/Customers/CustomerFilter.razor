@@ -1,0 +1,59 @@
+﻿@page "/customers/search"
+
+<h3>Search Customer</h3>
+
+<div class="form-inline">
+    <div class="form-group mb-2">
+        <label for="name" class="sr-only">Customer Name</label>
+        <input type="text" class="form-control" id="title" placeholder="Customer name"
+               @bind-value="name" @bind-value:event="oninput"
+               @onkeypress="@((KeyboardEventArgs e) => TitleKeyPressed(e))" />
+    </div>
+    <div class="form-btn-group mx-sm-3 mb-2">
+        <select class="form-control" @bind="selectedCustomer">
+            <option value="0">
+                -- Select customer
+            </option>
+            @foreach (var customer in Customers)
+            {
+                <option value="@customer.CustomerId">@customer.Name</option>
+            }
+        </select>
+    </div>
+   
+    <button type="button" class="btn btn-primary mb-2 mx-sm-3" @onclick="SearchForCustomer">Filter</button>
+    <button type="button" class="btn btn-danger mb-2" @onclick="Clear">Clear</button>
+
+</div>
+
+@code {
+    string name = "";
+    string selectedCustomer = "0";
+
+    private List<Customer> Customers = new List<Customer>()
+    {
+        new Customer() { CustomerId = 1, Name = "lepo" },
+        new Customer() { CustomerId = 2, Name = "lepo2" }
+    };
+
+    private void SearchForCustomer()
+    {
+        Console.WriteLine($"name: {name}");
+        Console.WriteLine($"Project: {selectedCustomer}");
+    }
+
+    private void Clear()
+    {
+        name = "";
+        selectedCustomer = "0";
+
+    }
+
+    private void TitleKeyPressed(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            // ... validate input string
+        }
+    }
+}

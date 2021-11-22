@@ -1,4 +1,4 @@
-﻿@page "/project/search"
+﻿@page "/projects/search"
 
 <h3>Search Project</h3>
 
@@ -28,7 +28,7 @@
         <input type="checkbox" class="form-check-input" id="upcomingReleases" @bind="inTheaters" />
         <label class="form-check-label" for="inTheaters">In Theaters</label>
     </div>
-    <button type="button" class="btn btn-primary mb-2 mx-sm-3" @onclick="SearchForMovies">Filter</button>
+    <button type="button" class="btn btn-primary mb-2 mx-sm-3" @onclick="SearchForProject">Filter</button>
     <button type="button" class="btn btn-danger mb-2" @onclick="Clear">Clear</button>
 
 </div>
@@ -45,7 +45,7 @@
         new Project() { Id = 2, Description = "bla", Name = "lepo2", Owner = "Ad", State = "closed" }
     };
 
-    private void SearchForMovies()
+    private void SearchForProject()
     {
         Console.WriteLine($"name: {name}");
         Console.WriteLine($"Project: {selectedProject}");

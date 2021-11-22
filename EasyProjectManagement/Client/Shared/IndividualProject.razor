@@ -1,18 +1,18 @@
 ﻿<div>
-    <a href="@projectURL">
-        <p>@projectData.Name</p>
+    <a href="@customerURL">
+        <p>@customerData.Name</p>
     </a>
 </div>
 
 @code {
     // Parameters
-    [Parameter] public Project projectData { get; set; }
+    [Parameter] public Customer customerData { get; set; }
 
     //Variables
-    private string projectURL = string.Empty;
+    private string customerURL = string.Empty;
 
     protected override void OnInitialized()
     {
-        projectURL = $"project/{projectData.Id}";
+        customerURL = $"customer/{customerData.CustomerId}";
     }
 }
